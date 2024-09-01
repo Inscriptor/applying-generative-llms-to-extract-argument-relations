@@ -1,0 +1,14 @@
+{
+    "dataset": "",
+    "datasetCML": "",
+    "prompts": "",
+    "outdir": "",
+    "logdir": "../../log",
+    "use_context": true,
+    "model_settings": {
+        "model_name": "models/mistral-7b-lora",
+        "batch_size": 3,
+        "max_new_tokens": 256,
+        "quantization": false
+    }
+}
