@@ -1,21 +1,31 @@
 # applying-generative-llms-to-extract-argument-relations
-Дополнительные материалы к статье **"Applying Generative Neural Networks to Extract Argument Relations 
+Additional materials to the paper **"Applying Generative Neural Networks to Extract Argument Relations 
 from Scientific Communication Texts"**.
 
-## Примеры инструкций к модели
+## Model instruction samples
 
-Примеры инструкций находятся в директории ```data/scicorp/prompts```.
-Для получения готового промпта для модели необходимо подцепить к инструкции входные данные, т.е.
-пару предложений, между которыми требуется предсказать наличие или отсутствие аргументативной связи,
-при необходимости --- их ближайший контекст, и обернуть в шаблон, ожидаемый моделью.
+The instruction examples are located in the directory `data/scicorp/prompts`.
+To generate a complete prompt for the model, you need to attach the input data to the instruction.
+The expected input is the pair of sentences for which you need to predict the presence or absence of
+an argumentative relationship, and, if necessary, their immediate context.
+Then, wrap the resulting prompt in the template format expected by the model.
 
-Для понимания шаблона см. файлы ```config/saiga_system_prompt.json``` и ```src/util/saiga/bot.py```.
-Шаблон соответствует инструкции в карточке модели на [HuggingFace](https://huggingface.co/IlyaGusev/saiga_7b_lora).
+To view the template, refer to the files `config/saiga_system_prompt.json` and `src/util/saiga/bot.py`.
+The template follows the instruction format specified in the model's card on [HuggingFace](https://huggingface.co/IlyaGusev/saiga_7b_lora).
+These files will guide you on how to structure the input data and instructions according to the model's
+expected format, ensuring that the prompts are correctly processed.
 
-## Исходники
+## Source code
 
-Имеется два основных исполняемых файла, соответствующих двум применявшимся стратегиям:
-```src/saiga/io-prompting.py``` и ```src/saiga/vote-prompting.py```. В текущем виде для запуска требуется
-подключение к серверу **ClearML**, т.к. ожидается, что данные лежат там. Ожидаемый датасет должен включать
-три файла: ```data.csv```, ```paragraphs.csv``` и ```all_sentences.csv```. Как они должны быть устроены
-см. в функции ```src/util/common.py:prepare_dataset()```.
+There are two main executable files corresponding to the two strategies used:
+
+1. `src/saiga/io-prompting.py`
+2. `src/saiga/vote-prompting.py`
+
+Currently, to run these scripts, a connection to the **ClearML** server is required, as the data is expected
+to be hosted there. The expected dataset should include the following three files:
+`data.csv`, `paragraphs.csv`, and `all_sentences.csv`.
+
+To understand the structure these files should have, refer to the function `prepare_dataset()` located
+in `src/util/common.py`. This function provides the guidelines for how the dataset should be organized
+for proper processing by the scripts.
